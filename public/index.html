@@ -17,11 +17,11 @@
             <form id="loginForm" class="auth-form">
                 <div class="form-group">
                     <label for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" class="form-control" placeholder="Votre email" autocomplete="email" required>
+                    <input type="email" id="loginEmail" name="loginEmail" class="form-control" placeholder="Votre email" autocomplete="email" required>
                 </div>
                 <div class="form-group">
                     <label for="loginPassword">Mot de passe</label>
-                    <input type="password" id="loginPassword" class="form-control" placeholder="Votre mot de passe" autocomplete="current-password" required>
+                    <input type="password" id="loginPassword" name="loginPassword" class="form-control" placeholder="Votre mot de passe" autocomplete="current-password" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Connexion</button>
                 <p><a href="#" id="forgotPasswordLink">Mot de passe oublié?</a></p>
@@ -32,19 +32,19 @@
             <form id="registerForm" class="auth-form" style="display: none;">
                 <div class="form-group">
                     <label for="registerName">Nom complet</label>
-                    <input type="text" id="registerName" class="form-control" placeholder="Votre nom" required>
+                    <input type="text" id="registerName" name="registerName" class="form-control" placeholder="Votre nom" required>
                 </div>
                 <div class="form-group">
                     <label for="registerEmail">Email</label>
-                    <input type="email" id="registerEmail" class="form-control" placeholder="Votre email" autocomplete="email" required>
+                    <input type="email" id="registerEmail" name="registerEmail" class="form-control" placeholder="Votre email" autocomplete="email" required>
                 </div>
                 <div class="form-group">
                     <label for="registerPassword">Mot de passe</label>
-                    <input type="password" id="registerPassword" class="form-control" placeholder="Votre mot de passe" autocomplete="current-password" required>
+                    <input type="password" id="registerPassword" name="registerPassword" class="form-control" placeholder="Votre mot de passe" autocomplete="current-password" required>
                 </div>
                 <div class="form-group">
                     <label for="registerRole">Rôle</label>
-                    <select id="registerRole" class="form-control" required>
+                    <select id="registerRole" name="registerRole" class="form-control" required>
                         <option value="" disabled selected>Sélectionnez votre rôle</option>
                         <option value="manager">Gérant</option>
                         <option value="director">Directeur</option>
@@ -58,7 +58,7 @@
             <form id="forgotPasswordForm" class="auth-form" style="display: none;">
                 <div class="form-group">
                     <label for="forgotPasswordEmail">Email</label>
-                    <input type="email" id="forgotPasswordEmail" class="form-control" placeholder="Votre email" autocomplete="email" required>
+                    <input type="email" id="forgotPasswordEmail" name="forgotPasswordEmail" class="form-control" placeholder="Votre email" autocomplete="email" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Réinitialiser le mot de passe</button>
                 <p>Retour à la <a href="#" id="showLoginFormFromForgot">connexion</a></p>
@@ -124,17 +124,19 @@
                 </div>
                 <div class="recent-activities">
                     <h3>Activités récentes</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Description</th>
-                                <th>Montant</th>
-                                <th>Type</th>
-                            </tr>
-                        </thead>
-                        <tbody id="recentActivitiesTable"></tbody>
-                    </table>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Montant</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentActivitiesTable"></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -142,61 +144,67 @@
             <div id="transactions" class="tab-content">
                 <h2>Transactions</h2>
                 <button id="addTransactionBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter Transaction</button>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Description</th>
-                            <th>De</th>
-                            <th>À</th>
-                            <th>Montant</th>
-                            <th>Type</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="transactionsTable"></tbody>
-                </table>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>De</th>
+                                <th>À</th>
+                                <th>Montant</th>
+                                <th>Type</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsTable"></tbody>
+                    </table>
+                </div>
             </div>
 
             <!-- Expenses Tab -->
             <div id="expenses" class="tab-content">
                 <h2>Dépenses</h2>
                 <button id="addExpenseBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter Dépense</button>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Description</th>
-                            <th>Catégorie</th>
-                            <th>Fournisseur</th>
-                            <th>Montant</th>
-                            <th>Statut</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="expensesTable"></tbody>
-                </table>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Catégorie</th>
+                                <th>Fournisseur</th>
+                                <th>Montant</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expensesTable"></tbody>
+                    </table>
+                </div>
             </div>
 
             <!-- Sales Tab -->
             <div id="sales" class="tab-content">
                 <h2>Ventes</h2>
                 <button id="addSaleBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter Vente</button>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Plateau</th>
-                            <th>Client</th>
-                            <th>Prix total</th>
-                            <th>Avance</th>
-                            <th>Restant</th>
-                            <th>Statut</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="salesTable"></tbody>
-                </table>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Plateau</th>
+                                <th>Client</th>
+                                <th>Prix total</th>
+                                <th>Avance</th>
+                                <th>Restant</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="salesTable"></tbody>
+                    </table>
+                </div>
             </div>
 
             <!-- Reports Tab -->
@@ -213,8 +221,8 @@
                         </select>
                     </div>
                     <div id="customDateRange" class="form-group" style="display: none;">
-                        <input type="date" id="startDate" class="form-control">
-                        <input type="date" id="endDate" class="form-control">
+                        <input type="date" id="startDate" name="startDate" class="form-control">
+                        <input type="date" id="endDate" name="endDate" class="form-control">
                     </div>
                     <button id="generateReportBtn" class="btn btn-primary">Générer Rapport</button>
                 </div>
@@ -229,67 +237,42 @@
     <!-- Transaction Modal -->
     <div id="transactionModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Ajouter une Transaction</h2>
+            <span class="close">×</span>
+            <h2 id="transactionModalTitle">Ajouter une Transaction</h2>
             <form id="transactionForm">
-                <div class="form-group">
-                    <label for="transactionType">Type de Transaction</label>
-                    <select id="transactionType" class="form-control" required>
-                        <option value="" disabled selected>Sélectionnez le type</option>
-                        <option value="funding">Financement</option>
-                        <option value="expense">Dépense</option>
-                        <option value="sale">Vente</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="transactionAmount">Montant (MAD)</label>
-                    <input type="number" id="transactionAmount" class="form-control" placeholder="Montant" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label for="transactionDate">Date</label>
-                    <input type="date" id="transactionDate" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="transactionDescription">Description</label>
-                    <textarea id="transactionDescription" class="form-control" placeholder="Description" required></textarea>
-                </div>
-                <!-- Expense Fields -->
+                <!-- Champs communs -->
+                <input type="hidden" id="transactionId">
+                <select id="transactionType" name="transactionType" class="form-control" required>
+                    <option value="" disabled selected>Sélectionnez un type</option>
+                    <option value="funding">Financement</option>
+                    <option value="expense">Dépense</option>
+                    <option value="sale">Vente</option>
+                </select>
+                <input type="number" id="transactionAmount" name="transactionAmount" class="form-control" placeholder="Montant" required>
+                <input type="date" id="transactionDate" name="transactionDate" class="form-control" required>
+                <input type="text" id="transactionDescription" name="transactionDescription" class="form-control" placeholder="Description" required>
+            
+                <!-- Champs pour dépense -->
                 <div id="expenseFields" style="display: none;">
-                    <div class="form-group">
-                        <label for="expenseCategory">Catégorie</label>
-                        <select id="expenseCategory" class="form-control">
-                            <option value="" disabled selected>Sélectionnez une catégorie</option>
-                            <option value="materials">Matériaux</option>
-                            <option value="labor">Main d'œuvre</option>
-                            <option value="equipment">Équipement</option>
-                            <option value="services">Services</option>
-                            <option value="other">Autres</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="expenseVendor">Fournisseur</label>
-                        <input type="text" id="expenseVendor" class="form-control" placeholder="Nom du fournisseur">
-                    </div>
+                    <select id="expenseCategory" name="expenseCategory" class="form-control">
+                        <option value="" disabled selected>Sélectionnez une catégorie</option>
+                        <option value="materials">Matériaux</option>
+                        <option value="labor">Main d'œuvre</option>
+                        <option value="equipment">Équipement</option>
+                        <option value="services">Services</option>
+                        <option value="other">Autres</option>
+                    </select>
+                    <input type="text" id="expenseVendor" name="expenseVendor" class="form-control" placeholder="Nom du fournisseur">
                 </div>
-                <!-- Sale Fields -->
+            
+                <!-- Champs pour vente -->
                 <div id="saleFields" style="display: none;">
-                    <div class="form-group">
-                        <label for="unitNumber">Numéro de Plateau</label>
-                        <input type="text" id="unitNumber" class="form-control" placeholder="ex. A-101">
-                    </div>
-                    <div class="form-group">
-                        <label for="clientName">Nom du Client</label>
-                        <input type="text" id="clientName" class="form-control" placeholder="Nom du client">
-                    </div>
-                    <div class="form-group">
-                        <label for="totalPrice">Prix Total (MAD)</label>
-                        <input type="number" id="totalPrice" class="form-control" placeholder="Prix total" step="0.01">
-                    </div>
+                    <input type="text" id="unitNumber" name="unitNumber" class="form-control" placeholder="Numéro d'unité">
+                    <input type="text" id="clientName" name="clientName" class="form-control" placeholder="Nom du client">
+                    <input type="number" id="totalPrice" name="totalPrice" class="form-control" placeholder="Prix total">
                 </div>
-                <div class="modal-actions">
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
-                    <button type="button" class="btn btn-secondary cancelBtn">Annuler</button>
-                </div>
+            
+                <button type="submit">Enregistrer</button>
             </form>
         </div>
     </div>
@@ -297,20 +280,21 @@
     <!-- Expense Modal -->
     <div id="expenseModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Ajouter une Dépense</h2>
+            <span class="close">×</span>
+            <h2 id="expenseModalTitle">Ajouter une Dépense</h2>
             <form id="expenseForm">
+                <input type="hidden" id="expenseId" name="expenseId">
                 <div class="form-group">
                     <label for="expenseDate">Date</label>
-                    <input type="date" id="expenseDate" class="form-control" required>
+                    <input type="date" id="expenseDate" name="expenseDate" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="expenseDescription">Description</label>
-                    <textarea id="expenseDescription" class="form-control" placeholder="Description" required></textarea>
+                    <textarea id="expenseDescription" name="expenseDescription" class="form-control" placeholder="Description" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="expenseCategoryModal">Catégorie</label>
-                    <select id="expenseCategoryModal" class="form-control" required>
+                    <select id="expenseCategoryModal" name="expenseCategoryModal" class="form-control" required>
                         <option value="" disabled selected>Sélectionnez une catégorie</option>
                         <option value="materials">Matériaux</option>
                         <option value="labor">Main d'œuvre</option>
@@ -321,15 +305,15 @@
                 </div>
                 <div class="form-group">
                     <label for="expenseVendorModal">Fournisseur</label>
-                    <input type="text" id="expenseVendorModal" class="form-control" placeholder="Nom du fournisseur" required>
+                    <input type="text" id="expenseVendorModal" name="expenseVendorModal" class="form-control" placeholder="Nom du fournisseur" required>
                 </div>
                 <div class="form-group">
                     <label for="expenseAmount">Montant (MAD)</label>
-                    <input type="number" id="expenseAmount" class="form-control" placeholder="Montant" step="0.01" required>
+                    <input type="number" id="expenseAmount" name="expenseAmount" class="form-control" placeholder="Montant" step="0.01" required>
                 </div>
                 <div class="form-group">
                     <label for="expenseStatus">Statut</label>
-                    <select id="expenseStatus" class="form-control" required>
+                    <select id="expenseStatus" name="expenseStatus" class="form-control" required>
                         <option value="pending">En attente</option>
                         <option value="completed">Complété</option>
                         <option value="canceled">Annulé</option>
@@ -346,36 +330,37 @@
     <!-- Sale Modal -->
     <div id="saleModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Ajouter une Vente</h2>
+            <span class="close">×</span>
+            <h2 id="saleModalTitle">Ajouter une Vente</h2>
             <form id="saleForm">
+                <input type="hidden" id="saleId" name="saleId">
                 <div class="form-group">
                     <label for="saleDate">Date</label>
-                    <input type="date" id="saleDate" class="form-control" required>
+                    <input type="date" id="saleDate" name="saleDate" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="unitNumberModal">Numéro de Plateau</label>
-                    <input type="text" id="unitNumberModal" class="form-control" placeholder="ex. A-101" required>
+                    <input type="text" id="unitNumberModal" name="unitNumberModal" class="form-control" placeholder="ex. A-101" required>
                 </div>
                 <div class="form-group">
                     <label for="clientNameModal">Nom du Client</label>
-                    <input type="text" id="clientNameModal" class="form-control" placeholder="Nom du client" required>
+                    <input type="text" id="clientNameModal" name="clientNameModal" class="form-control" placeholder="Nom du client" required>
                 </div>
                 <div class="form-group">
                     <label for="clientContact">Contact Client</label>
-                    <input type="email" id="clientContact" class="form-control" placeholder="Email du client">
+                    <input type="email" id="clientContact" name="clientContact" class="form-control" placeholder="Email du client">
                 </div>
                 <div class="form-group">
                     <label for="totalPriceModal">Prix Total (MAD)</label>
-                    <input type="number" id="totalPriceModal" class="form-control" placeholder="Prix total" step="0.01" required>
+                    <input type="number" id="totalPriceModal" name="totalPriceModal" class="form-control" placeholder="Prix total" step="0.01" required>
                 </div>
                 <div class="form-group">
                     <label for="advanceAmount">Montant Avance (MAD)</label>
-                    <input type="number" id="advanceAmount" class="form-control" placeholder="Montant avance" step="0.01" required>
+                    <input type="number" id="advanceAmount" name="advanceAmount" class="form-control" placeholder="Montant avance" step="0.01" required>
                 </div>
                 <div class="form-group">
                     <label for="saleStatus">Statut</label>
-                    <select id="saleStatus" class="form-control" required>
+                    <select id="saleStatus" name="saleStatus" class="form-control" required>
                         <option value="reserved">Réservé</option>
                         <option value="advance">Avancé</option>
                         <option value="sold">Vendu</option>
@@ -383,7 +368,7 @@
                 </div>
                 <div class="form-group">
                     <label for="saleNotes">Notes</label>
-                    <textarea id="saleNotes" class="form-control" placeholder="Notes supplémentaires"></textarea>
+                    <textarea id="saleNotes" name="saleNotes" class="form-control" placeholder="Notes supplémentaires"></textarea>
                 </div>
                 <div class="modal-actions">
                     <button type="submit" class="btn btn-primary">Enregistrer</button>
