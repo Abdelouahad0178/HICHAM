@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction Management App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="auth-screen">
+        <div class="auth-container">
+            <h2>Construction Management App</h2>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="Votre email" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Mot de passe</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Votre mot de passe" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Connexion</button>
+                <p><a href="#" id="forgotPasswordLink">Mot de passe oublié?</a></p>
+                <p>Pas de compte? <a href="#" id="showRegisterForm">Créer un compte</a></p>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm" class="auth-form" style="display: none;">
+                <div class="form-group">
+                    <label for="registerName">Nom complet</label>
+                    <input type="text" id="registerName" class="form-control" placeholder="Votre nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" class="form-control" placeholder="Votre email" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Mot de passe</label>
+                    <input type="password" id="registerPassword" class="form-control" placeholder="Votre mot de passe" autocomplete="current-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerRole">Rôle</label>
+                    <select id="registerRole" class="form-control" required>
+                        <option value="" disabled selected>Sélectionnez votre rôle</option>
+                        <option value="manager">Gérant</option>
+                        <option value="director">Directeur</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">S'inscrire</button>
+                <p>Déjà un compte? <a href="#" id="showLoginForm">Connexion</a></p>
+            </form>
+
+            <!-- Forgot Password Form -->
+            <form id="forgotPasswordForm" class="auth-form" style="display: none;">
+                <div class="form-group">
+                    <label for="forgotPasswordEmail">Email</label>
+                    <input type="email" id="forgotPasswordEmail" class="form-control" placeholder="Votre email" autocomplete="email" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Réinitialiser le mot de passe</button>
+                <p>Retour à la <a href="#" id="showLoginFormFromForgot">connexion</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App Screen -->
+    <div id="appScreen" class="app-screen" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="user-info">
+                <i class="fas fa-user-circle fa-3x"></i>
+                <h3 id="userDisplayName">Utilisateur</h3>
+                <span id="userRole" class="badge badge-primary">Rôle</span>
+            </div>
+            <ul class="menu">
+                <li class="menu-item active" data-tab="dashboard"><i class="fas fa-home"></i> Tableau de bord</li>
+                <li class="menu-item" data-tab="transactions"><i class="fas fa-exchange-alt"></i> Transactions</li>
+                <li class="menu-item" data-tab="expenses"><i class="fas fa-money-bill"></i> Dépenses</li>
+                <li class="menu-item" data-tab="sales"><i class="fas fa-chart-line"></i> Ventes</li>
+                <li class="menu-item" data-tab="reports"><i class="fas fa-file-alt"></i> Rapports</li>
+            </ul>
+            <button id="logoutBtn" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <h2>Tableau de bord</h2>
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <h3>Solde actuel</h3>
+                        <p id="currentBalance">0 MAD</p>
+                    </div>
+                    <div class="card">
+                        <h3>Financement total</h3>
+                        <p id="totalFunding">0 MAD</p>
+                    </div>
+                    <div class="card">
+                        <h3>Dépenses totales</h3>
+                        <p id="totalExpenses">0 MAD</p>
+                    </div>
+                    <div class="card">
+                        <h3>Ventes totales</h3>
+                        <p id="totalSales">0 MAD</p>
+                    </div>
+                    <div class="card">
+                        <h3>Unités vendues</h3>
+                        <p id="totalUnitsSold">0</p>
+                    </div>
+                </div>
+                <div class="charts">
+                    <div class="chart-container">
+                        <h3>Flux de trésorerie</h3>
+                        <canvas id="cashFlowChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Répartition des dépenses</h3>
+                        <canvas id="expensesChart"></canvas>
+                    </div>
+                </div>
+                <div class="recent-activities">
+                    <h3>Activités récentes</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Montant</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentActivitiesTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Transactions Tab -->
+            <div id="transactions" class="tab-content">
+                <h2>Transactions</h2>
+                <button id="addTransactionBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter Transaction</button>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>De</th>
+                            <th>À</th>
+                            <th>Montant</th>
+                            <th>Type</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsTable"></tbody>
+                </table>
+            </div>
+
+            <!-- Expenses Tab -->
+            <div id="expenses" class="tab-content">
+                <h2>Dépenses</h2>
+                <button id="addExpenseBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter Dépense</button>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Catégorie</th>
+                            <th>Fournisseur</th>
+                            <th>Montant</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expensesTable"></tbody>
+                </table>
+            </div>
+
+            <!-- Sales Tab -->
+            <div id="sales" class="tab-content">
+                <h2>Ventes</h2>
+                <button id="addSaleBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter Vente</button>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Plateau</th>
+                            <th>Client</th>
+                            <th>Prix total</th>
+                            <th>Avance</th>
+                            <th>Restant</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="salesTable"></tbody>
+                </table>
+            </div>
+
+            <!-- Reports Tab -->
+            <div id="reports" class="tab-content">
+                <h2>Rapports</h2>
+                <div class="report-controls">
+                    <div class="form-group">
+                        <label for="reportPeriod">Période</label>
+                        <select id="reportPeriod" class="form-control">
+                            <option value="weekly">Hebdomadaire</option>
+                            <option value="monthly">Mensuel</option>
+                            <option value="yearly">Annuel</option>
+                            <option value="custom">Personnalisé</option>
+                        </select>
+                    </div>
+                    <div id="customDateRange" class="form-group" style="display: none;">
+                        <input type="date" id="startDate" class="form-control">
+                        <input type="date" id="endDate" class="form-control">
+                    </div>
+                    <button id="generateReportBtn" class="btn btn-primary">Générer Rapport</button>
+                </div>
+                <div class="chart-container">
+                    <h3>Activités financières</h3>
+                    <canvas id="reportChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction Modal -->
+    <div id="transactionModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Ajouter une Transaction</h2>
+            <form id="transactionForm">
+                <div class="form-group">
+                    <label for="transactionType">Type de Transaction</label>
+                    <select id="transactionType" class="form-control" required>
+                        <option value="" disabled selected>Sélectionnez le type</option>
+                        <option value="funding">Financement</option>
+                        <option value="expense">Dépense</option>
+                        <option value="sale">Vente</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="transactionAmount">Montant (MAD)</label>
+                    <input type="number" id="transactionAmount" class="form-control" placeholder="Montant" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="transactionDate">Date</label>
+                    <input type="date" id="transactionDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="transactionDescription">Description</label>
+                    <textarea id="transactionDescription" class="form-control" placeholder="Description" required></textarea>
+                </div>
+                <!-- Expense Fields -->
+                <div id="expenseFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="expenseCategory">Catégorie</label>
+                        <select id="expenseCategory" class="form-control">
+                            <option value="" disabled selected>Sélectionnez une catégorie</option>
+                            <option value="materials">Matériaux</option>
+                            <option value="labor">Main d'œuvre</option>
+                            <option value="equipment">Équipement</option>
+                            <option value="services">Services</option>
+                            <option value="other">Autres</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseVendor">Fournisseur</label>
+                        <input type="text" id="expenseVendor" class="form-control" placeholder="Nom du fournisseur">
+                    </div>
+                </div>
+                <!-- Sale Fields -->
+                <div id="saleFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="unitNumber">Numéro de Plateau</label>
+                        <input type="text" id="unitNumber" class="form-control" placeholder="ex. A-101">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientName">Nom du Client</label>
+                        <input type="text" id="clientName" class="form-control" placeholder="Nom du client">
+                    </div>
+                    <div class="form-group">
+                        <label for="totalPrice">Prix Total (MAD)</label>
+                        <input type="number" id="totalPrice" class="form-control" placeholder="Prix total" step="0.01">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <button type="button" class="btn btn-secondary cancelBtn">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Expense Modal -->
+    <div id="expenseModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Ajouter une Dépense</h2>
+            <form id="expenseForm">
+                <div class="form-group">
+                    <label for="expenseDate">Date</label>
+                    <input type="date" id="expenseDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="expenseDescription">Description</label>
+                    <textarea id="expenseDescription" class="form-control" placeholder="Description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="expenseCategoryModal">Catégorie</label>
+                    <select id="expenseCategoryModal" class="form-control" required>
+                        <option value="" disabled selected>Sélectionnez une catégorie</option>
+                        <option value="materials">Matériaux</option>
+                        <option value="labor">Main d'œuvre</option>
+                        <option value="equipment">Équipement</option>
+                        <option value="services">Services</option>
+                        <option value="other">Autres</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="expenseVendorModal">Fournisseur</label>
+                    <input type="text" id="expenseVendorModal" class="form-control" placeholder="Nom du fournisseur" required>
+                </div>
+                <div class="form-group">
+                    <label for="expenseAmount">Montant (MAD)</label>
+                    <input type="number" id="expenseAmount" class="form-control" placeholder="Montant" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="expenseStatus">Statut</label>
+                    <select id="expenseStatus" class="form-control" required>
+                        <option value="pending">En attente</option>
+                        <option value="completed">Complété</option>
+                        <option value="canceled">Annulé</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <button type="button" class="btn btn-secondary cancelBtn">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sale Modal -->
+    <div id="saleModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Ajouter une Vente</h2>
+            <form id="saleForm">
+                <div class="form-group">
+                    <label for="saleDate">Date</label>
+                    <input type="date" id="saleDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="unitNumberModal">Numéro de Plateau</label>
+                    <input type="text" id="unitNumberModal" class="form-control" placeholder="ex. A-101" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientNameModal">Nom du Client</label>
+                    <input type="text" id="clientNameModal" class="form-control" placeholder="Nom du client" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientContact">Contact Client</label>
+                    <input type="email" id="clientContact" class="form-control" placeholder="Email du client">
+                </div>
+                <div class="form-group">
+                    <label for="totalPriceModal">Prix Total (MAD)</label>
+                    <input type="number" id="totalPriceModal" class="form-control" placeholder="Prix total" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="advanceAmount">Montant Avance (MAD)</label>
+                    <input type="number" id="advanceAmount" class="form-control" placeholder="Montant avance" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="saleStatus">Statut</label>
+                    <select id="saleStatus" class="form-control" required>
+                        <option value="reserved">Réservé</option>
+                        <option value="advance">Avancé</option>
+                        <option value="sold">Vendu</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="saleNotes">Notes</label>
+                    <textarea id="saleNotes" class="form-control" placeholder="Notes supplémentaires"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <button type="button" class="btn btn-secondary cancelBtn">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
