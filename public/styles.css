@@ -579,3 +579,45 @@ canvas {
         font-size: 1.3rem;
     }
 }
+.actions {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.actions .btn {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+}
+
+.actions .btn i {
+    margin-right: 3px;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.btn-danger {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+@media (max-width: 768px) {
+    .actions {
+        flex-direction: column;
+    }
+    
+    .actions .btn {
+        width: 100%;
+    }
+}

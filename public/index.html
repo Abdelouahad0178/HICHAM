@@ -3,171 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Construction Management App</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Gestion de Construction - Hicham</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Login Screen -->
-    <div id="loginScreen" class="auth-screen">
-        <div class="auth-container">
-            <h2>Construction Management App</h2>
+    <!-- Écran de Connexion -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-form">
+            <div class="auth-header">
+                <i class="fas fa-building fa-3x"></i>
+                <h1>Gestion de Construction</h1>
+                <p>Application de gestion financière pour projets immobiliers</p>
+            </div>
 
-            <!-- Login Form -->
-            <form id="loginForm" class="auth-form">
+            <!-- Formulaire de Connexion -->
+            <form id="loginForm" class="auth-form active-form">
+                <h2><i class="fas fa-sign-in-alt"></i> Connexion</h2>
                 <div class="form-group">
-                    <label for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" name="loginEmail" class="form-control" placeholder="Votre email" autocomplete="email" required>
+                    <label for="loginEmail"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="email@exemple.com" required>
                 </div>
                 <div class="form-group">
-                    <label for="loginPassword">Mot de passe</label>
-                    <input type="password" id="loginPassword" name="loginPassword" class="form-control" placeholder="Votre mot de passe" autocomplete="current-password" required>
+                    <label for="loginPassword"><i class="fas fa-lock"></i> Mot de passe</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Connexion</button>
-                <p><a href="#" id="forgotPasswordLink">Mot de passe oublié?</a></p>
-                <p>Pas de compte? <a href="#" id="showRegisterForm">Créer un compte</a></p>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i> Se connecter
+                </button>
+                <div class="auth-footer">
+                    <a href="#" id="forgotPasswordLink">Mot de passe oublié?</a>
+                    <a href="#" id="showRegisterForm">Créer un compte</a>
+                </div>
             </form>
 
-            <!-- Register Form -->
-            <form id="registerForm" class="auth-form" style="display: none;">
+            <!-- Formulaire d'Inscription -->
+            <form id="registerForm" class="auth-form">
+                <h2><i class="fas fa-user-plus"></i> Inscription</h2>
                 <div class="form-group">
-                    <label for="registerName">Nom complet</label>
-                    <input type="text" id="registerName" name="registerName" class="form-control" placeholder="Votre nom" required>
+                    <label for="registerName"><i class="fas fa-user"></i> Nom complet</label>
+                    <input type="text" id="registerName" class="form-control" placeholder="Votre nom" required>
                 </div>
                 <div class="form-group">
-                    <label for="registerEmail">Email</label>
-                    <input type="email" id="registerEmail" name="registerEmail" class="form-control" placeholder="Votre email" autocomplete="email" required>
+                    <label for="registerEmail"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="registerEmail" class="form-control" placeholder="email@exemple.com" required>
                 </div>
                 <div class="form-group">
-                    <label for="registerPassword">Mot de passe</label>
-                    <input type="password" id="registerPassword" name="registerPassword" class="form-control" placeholder="Votre mot de passe" autocomplete="current-password" required>
+                    <label for="registerPassword"><i class="fas fa-lock"></i> Mot de passe</label>
+                    <input type="password" id="registerPassword" class="form-control" placeholder="••••••••" required>
                 </div>
                 <div class="form-group">
-                    <label for="registerRole">Rôle</label>
-                    <select id="registerRole" name="registerRole" class="form-control" required>
-                        <option value="" disabled selected>Sélectionnez votre rôle</option>
+                    <label for="registerRole"><i class="fas fa-user-tag"></i> Rôle</label>
+                    <select id="registerRole" class="form-control" required>
+                        <option value="" disabled selected>Sélectionnez un rôle</option>
                         <option value="manager">Gérant</option>
                         <option value="director">Directeur</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">S'inscrire</button>
-                <p>Déjà un compte? <a href="#" id="showLoginForm">Connexion</a></p>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-user-plus"></i> S'inscrire
+                </button>
+                <div class="auth-footer">
+                    <a href="#" id="showLoginForm">Déjà un compte? Se connecter</a>
+                </div>
             </form>
 
-            <!-- Forgot Password Form -->
-            <form id="forgotPasswordForm" class="auth-form" style="display: none;">
+            <!-- Formulaire de Réinitialisation -->
+            <form id="forgotPasswordForm" class="auth-form">
+                <h2><i class="fas fa-key"></i> Réinitialisation</h2>
                 <div class="form-group">
-                    <label for="forgotPasswordEmail">Email</label>
-                    <input type="email" id="forgotPasswordEmail" name="forgotPasswordEmail" class="form-control" placeholder="Votre email" autocomplete="email" required>
+                    <label for="forgotPasswordEmail"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="forgotPasswordEmail" class="form-control" placeholder="email@exemple.com" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Réinitialiser le mot de passe</button>
-                <p>Retour à la <a href="#" id="showLoginFormFromForgot">connexion</a></p>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-paper-plane"></i> Envoyer le lien
+                </button>
+                <div class="auth-footer">
+                    <a href="#" id="showLoginFormFromForgot"><i class="fas fa-arrow-left"></i> Retour à la connexion</a>
+                </div>
             </form>
         </div>
     </div>
 
-    <!-- Main App Screen -->
-    <div id="appScreen" class="app-screen" style="display: none;">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="user-info">
-                <i class="fas fa-user-circle fa-3x"></i>
-                <h3 id="userDisplayName">Utilisateur</h3>
-                <span id="userRole" class="badge badge-primary">Rôle</span>
-            </div>
-            <ul class="menu">
-                <li class="menu-item active" data-tab="dashboard"><i class="fas fa-home"></i> Tableau de bord</li>
-                <li class="menu-item" data-tab="transactions"><i class="fas fa-exchange-alt"></i> Transactions</li>
-                <li class="menu-item" data-tab="expenses"><i class="fas fa-money-bill"></i> Dépenses</li>
-                <li class="menu-item" data-tab="sales"><i class="fas fa-chart-line"></i> Ventes</li>
-                <li class="menu-item" data-tab="reports"><i class="fas fa-file-alt"></i> Rapports</li>
-            </ul>
-            <button id="logoutBtn" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
-        </div>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Dashboard Tab -->
-            <div id="dashboard" class="tab-content active">
-                <h2>Tableau de bord</h2>
-                <div class="dashboard-cards">
-                    <div class="card">
-                        <h3>Solde actuel</h3>
-                        <p id="currentBalance">0 MAD</p>
-                    </div>
-                    <div class="card">
-                        <h3>Financement total</h3>
-                        <p id="totalFunding">0 MAD</p>
-                    </div>
-                    <div class="card">
-                        <h3>Dépenses totales</h3>
-                        <p id="totalExpenses">0 MAD</p>
-                    </div>
-                    <div class="card">
-                        <h3>Ventes totales</h3>
-                        <p id="totalSales">0 MAD</p>
-                    </div>
-                    <div class="card">
-                        <h3>Unités vendues</h3>
-                        <p id="totalUnitsSold">0</p>
-                    </div>
-                </div>
-                <div class="charts">
-                    <div class="chart-container">
-                        <h3>Flux de trésorerie</h3>
-                        <canvas id="cashFlowChart"></canvas>
-                    </div>
-                    <div class="chart-container">
-                        <h3>Répartition des dépenses</h3>
-                        <canvas id="expensesChart"></canvas>
-                    </div>
-                </div>
-                <div class="recent-activities">
-                    <h3>Activités récentes</h3>
-                    <div class="table-container">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Description</th>
-                                    <th>Montant</th>
-                                    <th>Type</th>
-                                </tr>
-                            </thead>
-                            <tbody id="recentActivitiesTable"></tbody>
-                        </table>
+    <!-- Application Principale -->
+    <div id="appScreen" class="container">
+        <!-- Barre Latérale -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Hicham&background=3498db&color=fff" alt="Profil" id="userAvatar">
+                    <div>
+                        <h3 id="userDisplayName">Hicham</h3>
+                        <span id="userRole" class="badge badge-primary">Gérant</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Transactions Tab -->
-            <div id="transactions" class="tab-content">
-                <h2>Transactions</h2>
-                <button id="addTransactionBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter Transaction</button>
+            <nav class="sidebar-menu">
+                <ul>
+                    <li class="menu-item active" data-tab="dashboard">
+                        <i class="fas fa-tachometer-alt"></i> Tableau de bord
+                    </li>
+                    <li class="menu-item" data-tab="fundings">
+                        <i class="fas fa-money-bill-wave"></i> Financements
+                    </li>
+                    <li class="menu-item" data-tab="expenses">
+                        <i class="fas fa-receipt"></i> Dépenses
+                    </li>
+                    <li class="menu-item" data-tab="sales">
+                        <i class="fas fa-home"></i> Ventes
+                    </li>
+                    <li class="menu-item" data-tab="reports">
+                        <i class="fas fa-chart-pie"></i> Rapports
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="btn btn-danger">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </button>
+                <div class="app-version">v1.0.0</div>
+            </div>
+        </aside>
+
+        <!-- Contenu Principal -->
+        <main class="main-content">
+            <!-- Barre d'En-tête -->
+            <header class="header">
+                <h1 id="currentTabTitle">Tableau de bord</h1>
+                <div class="user-info">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contenu des Onglets -->
+            <div class="tab-content active" id="dashboard">
+                <!-- Cartes de Résumé -->
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">Solde Actuel</span>
+                            <div class="card-icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                        </div>
+                        <div class="card-value" id="currentBalance">0 MAD</div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">Financement</span>
+                            <div class="card-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                        </div>
+                        <div class="card-value" id="totalFunding">0 MAD</div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">Dépenses</span>
+                            <div class="card-icon">
+                                <i class="fas fa-receipt"></i>
+                            </div>
+                        </div>
+                        <div class="card-value" id="totalExpenses">0 MAD</div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">Ventes</span>
+                            <div class="card-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                        </div>
+                        <div class="card-value" id="totalSales">0 MAD</div>
+                        <div class="card-footer">
+                            <span id="totalUnitsSold">0</span> unités vendues
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphiques -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Flux de Trésorerie</h3>
+                    </div>
+                    <canvas id="cashFlowChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Répartition des Dépenses</h3>
+                    </div>
+                    <canvas id="expensesChart"></canvas>
+                </div>
+
+                <!-- Activités Récentes -->
                 <div class="table-container">
-                    <table class="table">
+                    <div class="section-header">
+                        <h3>Activités Récentes</h3>
+                    </div>
+                    <table>
                         <thead>
                             <tr>
                                 <th>Date</th>
                                 <th>Description</th>
-                                <th>De</th>
-                                <th>À</th>
                                 <th>Montant</th>
                                 <th>Type</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="transactionsTable"></tbody>
+                        <tbody id="recentActivitiesTable">
+                            <!-- Rempli dynamiquement -->
+                        </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Expenses Tab -->
-            <div id="expenses" class="tab-content">
-                <h2>Dépenses</h2>
-                <button id="addExpenseBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter Dépense</button>
+            <!-- Onglet Financements -->
+            <div class="tab-content" id="fundings">
+                <div class="section-header">
+                    <h2>Financements</h2>
+                    <button id="addFundingBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Nouveau Financement
+                    </button>
+                </div>
+                
                 <div class="table-container">
-                    <table class="table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Montant</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fundingsTable">
+                            <!-- Rempli dynamiquement -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Onglet Dépenses -->
+            <div class="tab-content" id="expenses">
+                <div class="section-header">
+                    <h2>Dépenses</h2>
+                    <button id="addExpenseBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Nouvelle Dépense
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table>
                         <thead>
                             <tr>
                                 <th>Date</th>
@@ -179,202 +272,206 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="expensesTable"></tbody>
+                        <tbody id="expensesTable">
+                            <!-- Rempli dynamiquement -->
+                        </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Sales Tab -->
-            <div id="sales" class="tab-content">
-                <h2>Ventes</h2>
-                <button id="addSaleBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter Vente</button>
+            <!-- Onglet Ventes -->
+            <div class="tab-content" id="sales">
+                <div class="section-header">
+                    <h2>Ventes Immobilières</h2>
+                    <button id="addSaleBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Nouvelle Vente
+                    </button>
+                </div>
+                
                 <div class="table-container">
-                    <table class="table">
+                    <table>
                         <thead>
                             <tr>
                                 <th>Date</th>
                                 <th>Plateau</th>
                                 <th>Client</th>
-                                <th>Prix total</th>
+                                <th>Prix Total</th>
                                 <th>Avance</th>
-                                <th>Restant</th>
+                                <th>Reste</th>
                                 <th>Statut</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="salesTable"></tbody>
+                        <tbody id="salesTable">
+                            <!-- Rempli dynamiquement -->
+                        </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Reports Tab -->
-            <div id="reports" class="tab-content">
-                <h2>Rapports</h2>
-                <div class="report-controls">
-                    <div class="form-group">
-                        <label for="reportPeriod">Période</label>
+            <!-- Onglet Rapports -->
+            <div class="tab-content" id="reports">
+                <div class="section-header">
+                    <h2>Rapports Financiers</h2>
+                    <div class="report-controls">
                         <select id="reportPeriod" class="form-control">
                             <option value="weekly">Hebdomadaire</option>
                             <option value="monthly">Mensuel</option>
                             <option value="yearly">Annuel</option>
                             <option value="custom">Personnalisé</option>
                         </select>
+                        <div id="customDateRange" style="display: none;">
+                            <input type="date" id="startDate" class="form-control">
+                            <span>à</span>
+                            <input type="date" id="endDate" class="form-control">
+                        </div>
+                        <button id="generateReportBtn" class="btn btn-primary">
+                            <i class="fas fa-file-export"></i> Générer
+                        </button>
                     </div>
-                    <div id="customDateRange" class="form-group" style="display: none;">
-                        <input type="date" id="startDate" name="startDate" class="form-control">
-                        <input type="date" id="endDate" name="endDate" class="form-control">
-                    </div>
-                    <button id="generateReportBtn" class="btn btn-primary">Générer Rapport</button>
                 </div>
+                
                 <div class="chart-container">
-                    <h3>Activités financières</h3>
                     <canvas id="reportChart"></canvas>
                 </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Financement -->
+    <div id="fundingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Nouveau Financement</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="fundingForm">
+                    <div class="form-group">
+                        <label for="fundingAmount">Montant (MAD)</label>
+                        <input type="number" id="fundingAmount" class="form-control" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fundingDate">Date</label>
+                        <input type="date" id="fundingDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fundingDescription">Description</label>
+                        <input type="text" id="fundingDescription" class="form-control" required>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary cancelBtn">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <!-- Transaction Modal -->
-    <div id="transactionModal" class="modal">
-        <div class="modal-content">
-            <span class="close">×</span>
-            <h2 id="transactionModalTitle">Ajouter une Transaction</h2>
-            <form id="transactionForm">
-                <!-- Champs communs -->
-                <input type="hidden" id="transactionId">
-                <select id="transactionType" name="transactionType" class="form-control" required>
-                    <option value="" disabled selected>Sélectionnez un type</option>
-                    <option value="funding">Financement</option>
-                    <option value="expense">Dépense</option>
-                    <option value="sale">Vente</option>
-                </select>
-                <input type="number" id="transactionAmount" name="transactionAmount" class="form-control" placeholder="Montant" required>
-                <input type="date" id="transactionDate" name="transactionDate" class="form-control" required>
-                <input type="text" id="transactionDescription" name="transactionDescription" class="form-control" placeholder="Description" required>
-            
-                <!-- Champs pour dépense -->
-                <div id="expenseFields" style="display: none;">
-                    <select id="expenseCategory" name="expenseCategory" class="form-control">
-                        <option value="" disabled selected>Sélectionnez une catégorie</option>
-                        <option value="materials">Matériaux</option>
-                        <option value="labor">Main d'œuvre</option>
-                        <option value="equipment">Équipement</option>
-                        <option value="services">Services</option>
-                        <option value="other">Autres</option>
-                    </select>
-                    <input type="text" id="expenseVendor" name="expenseVendor" class="form-control" placeholder="Nom du fournisseur">
-                </div>
-            
-                <!-- Champs pour vente -->
-                <div id="saleFields" style="display: none;">
-                    <input type="text" id="unitNumber" name="unitNumber" class="form-control" placeholder="Numéro d'unité">
-                    <input type="text" id="clientName" name="clientName" class="form-control" placeholder="Nom du client">
-                    <input type="number" id="totalPrice" name="totalPrice" class="form-control" placeholder="Prix total">
-                </div>
-            
-                <button type="submit">Enregistrer</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Expense Modal -->
+    <!-- Modal Dépense -->
     <div id="expenseModal" class="modal">
         <div class="modal-content">
-            <span class="close">×</span>
-            <h2 id="expenseModalTitle">Ajouter une Dépense</h2>
-            <form id="expenseForm">
-                <input type="hidden" id="expenseId" name="expenseId">
-                <div class="form-group">
-                    <label for="expenseDate">Date</label>
-                    <input type="date" id="expenseDate" name="expenseDate" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="expenseDescription">Description</label>
-                    <textarea id="expenseDescription" name="expenseDescription" class="form-control" placeholder="Description" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="expenseCategoryModal">Catégorie</label>
-                    <select id="expenseCategoryModal" name="expenseCategoryModal" class="form-control" required>
-                        <option value="" disabled selected>Sélectionnez une catégorie</option>
-                        <option value="materials">Matériaux</option>
-                        <option value="labor">Main d'œuvre</option>
-                        <option value="equipment">Équipement</option>
-                        <option value="services">Services</option>
-                        <option value="other">Autres</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="expenseVendorModal">Fournisseur</label>
-                    <input type="text" id="expenseVendorModal" name="expenseVendorModal" class="form-control" placeholder="Nom du fournisseur" required>
-                </div>
-                <div class="form-group">
-                    <label for="expenseAmount">Montant (MAD)</label>
-                    <input type="number" id="expenseAmount" name="expenseAmount" class="form-control" placeholder="Montant" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label for="expenseStatus">Statut</label>
-                    <select id="expenseStatus" name="expenseStatus" class="form-control" required>
-                        <option value="pending">En attente</option>
-                        <option value="completed">Complété</option>
-                        <option value="canceled">Annulé</option>
-                    </select>
-                </div>
-                <div class="modal-actions">
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
-                    <button type="button" class="btn btn-secondary cancelBtn">Annuler</button>
-                </div>
-            </form>
+            <div class="modal-header">
+                <h3 class="modal-title">Nouvelle Dépense</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="expenseForm">
+                    <div class="form-group">
+                        <label for="expenseDate">Date</label>
+                        <input type="date" id="expenseDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseDescription">Description</label>
+                        <input type="text" id="expenseDescription" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseCategoryModal">Catégorie</label>
+                        <select id="expenseCategoryModal" class="form-control" required>
+                            <option value="materiel">Matériel</option>
+                            <option value="main_oeuvre">Main d'œuvre</option>
+                            <option value="administratif">Administratif</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseVendorModal">Fournisseur</label>
+                        <input type="text" id="expenseVendorModal" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseAmount">Montant (MAD)</label>
+                        <input type="number" id="expenseAmount" class="form-control" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseStatus">Statut</label>
+                        <select id="expenseStatus" class="form-control" required>
+                            <option value="pending">En attente</option>
+                            <option value="paid">Payé</option>
+                            <option value="canceled">Annulé</option>
+                        </select>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary cancelBtn">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
-    <!-- Sale Modal -->
+    <!-- Modal Vente -->
     <div id="saleModal" class="modal">
         <div class="modal-content">
-            <span class="close">×</span>
-            <h2 id="saleModalTitle">Ajouter une Vente</h2>
-            <form id="saleForm">
-                <input type="hidden" id="saleId" name="saleId">
-                <div class="form-group">
-                    <label for="saleDate">Date</label>
-                    <input type="date" id="saleDate" name="saleDate" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="unitNumberModal">Numéro de Plateau</label>
-                    <input type="text" id="unitNumberModal" name="unitNumberModal" class="form-control" placeholder="ex. A-101" required>
-                </div>
-                <div class="form-group">
-                    <label for="clientNameModal">Nom du Client</label>
-                    <input type="text" id="clientNameModal" name="clientNameModal" class="form-control" placeholder="Nom du client" required>
-                </div>
-                <div class="form-group">
-                    <label for="clientContact">Contact Client</label>
-                    <input type="email" id="clientContact" name="clientContact" class="form-control" placeholder="Email du client">
-                </div>
-                <div class="form-group">
-                    <label for="totalPriceModal">Prix Total (MAD)</label>
-                    <input type="number" id="totalPriceModal" name="totalPriceModal" class="form-control" placeholder="Prix total" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label for="advanceAmount">Montant Avance (MAD)</label>
-                    <input type="number" id="advanceAmount" name="advanceAmount" class="form-control" placeholder="Montant avance" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label for="saleStatus">Statut</label>
-                    <select id="saleStatus" name="saleStatus" class="form-control" required>
-                        <option value="reserved">Réservé</option>
-                        <option value="advance">Avancé</option>
-                        <option value="sold">Vendu</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="saleNotes">Notes</label>
-                    <textarea id="saleNotes" name="saleNotes" class="form-control" placeholder="Notes supplémentaires"></textarea>
-                </div>
-                <div class="modal-actions">
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
-                    <button type="button" class="btn btn-secondary cancelBtn">Annuler</button>
-                </div>
-            </form>
+            <div class="modal-header">
+                <h3 class="modal-title">Nouvelle Vente</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="saleForm">
+                    <div class="form-group">
+                        <label for="saleDate">Date</label>
+                        <input type="date" id="saleDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="unitNumberModal">Numéro d'unité</label>
+                        <input type="text" id="unitNumberModal" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientNameModal">Client</label>
+                        <input type="text" id="clientNameModal" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientContact">Contact client</label>
+                        <input type="text" id="clientContact" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="totalPriceModal">Prix total (MAD)</label>
+                        <input type="number" id="totalPriceModal" class="form-control" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="advanceAmount">Avance (MAD)</label>
+                        <input type="number" id="advanceAmount" class="form-control" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="saleStatus">Statut</label>
+                        <select id="saleStatus" class="form-control" required>
+                            <option value="reserved">Réservé</option>
+                            <option value="sold">Vendu</option>
+                            <option value="canceled">Annulé</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="saleNotes">Notes</label>
+                        <textarea id="saleNotes" class="form-control" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary cancelBtn">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
