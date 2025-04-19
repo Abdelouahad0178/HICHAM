@@ -1,12 +1,12 @@
 // Configuration Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyBX5Ijm-qeW4piO1bLrnVOj5KAb8tZrehU",
-    authDomain: "gestionhichami.firebaseapp.com",
-    projectId: "gestionhichami",
-    storageBucket: "gestionhichami.appspot.com",
-    messagingSenderId: "124682777633",
-    appId: "1:124682777633:web:91b45c69c26af0002a5f60",
-    measurementId: "G-J8FCDY2SFC"
+    apiKey: "AIzaSyB056AnQrA8FNDNMzjtno5W3-Bh9EqMb1Y",
+  authDomain: "gestionhichamo.firebaseapp.com",
+  projectId: "gestionhichamo",
+  storageBucket: "gestionhichamo.firebasestorage.app",
+  messagingSenderId: "957376167296",
+  appId: "1:957376167296:web:32aac03d0de9bc60cc9565",
+  measurementId: "G-DQS80K79RQ"
 };
 
 // Initialisation Firebase
